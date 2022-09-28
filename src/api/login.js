@@ -11,6 +11,7 @@ export function login(data) {
 export function loginUserImageCode(uuid) {
   return request({
     url: `/user-service/user/imageCode/${uuid}`,
-    method: 'GET'
+    method: 'GET',
+    responseType: 'blob'
   })
 }

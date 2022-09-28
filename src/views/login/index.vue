@@ -11,16 +11,9 @@
         <!-- 密码 -->
         <el-form-item prop="password">
           <span class="svg-container el-icon-lock icon" />
-          <el-input
-            ref="pwd"
-            v-model="loginForm.password"
-            placeholder="请输入密码"
-            :type="passwordType"
-          />
+          <el-input ref="pwd" v-model="loginForm.password" placeholder="请输入密码" :type="passwordType" />
           <span class="les" @click="showpwd">
-            <svg-icon
-              :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"
-            />
+            <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
           </span>
         </el-form-item>
         <!-- 验证码 -->
@@ -28,20 +21,10 @@
           <span class="svg-container el-icon-setting icon" />
           <el-input v-model="loginForm.code" placeholder="请输入验证码" />
           <span @click="queryCodeImage">
-            <img
-              :src="loginImage"
-              alt=""
-              class="img"
-              @click="1"
-            >
+            <img :src="loginImage" alt="" class="img">
           </span>
         </el-form-item>
-        <el-button
-          type="primary"
-          class="loginBtn"
-          :loading="loading"
-          @click="login"
-        >登入</el-button>
+        <el-button type="primary" class="loginBtn" :loading="loading" @click="login">登入</el-button>
       </el-form>
     </div>
   </div>
@@ -91,11 +74,12 @@ export default {
     }
   },
   methods: {
+
     // 获取验证码
     async queryCodeImage() {
       const uuid = Math.floor(Math.random() * 9999) + 1
-      const { data: codeImage } = await loginUserImageCode(uuid)
-      this.loginImage = window.URL.createObjectURL(new Blob([codeImage], { type: 'image/jpeg' }))
+      const { data } = await loginUserImageCode(uuid)
+      this.loginImage = window.URL.createObjectURL(data)
       console.log(this.loginImage)
     },
     showpwd() {
@@ -128,6 +112,7 @@ $dark_gray: #889aa4;
 $bg: #d4e3ff;
 $light_gray: #68b0fe;
 $cursor: #fff;
+
 .login-container {
   position: relative;
   height: 100%;
@@ -136,6 +121,7 @@ $cursor: #fff;
   background-image: url(~@/assets/帝可得图片/common/background.png);
   background-repeat: no-repeat;
   background-size: cover;
+
   .box {
     position: absolute;
     width: 518px;
@@ -149,6 +135,7 @@ $cursor: #fff;
     -webkit-box-shadow: 0 3px 70px 0 rgb(30 111 72 / 35%);
     box-shadow: 0 3px 70px 0 rgb(30 111 72 / 35%);
     border-radius: 10px;
+
     img {
       position: absolute;
       width: 96px;
@@ -162,11 +149,13 @@ $cursor: #fff;
     .el-form {
       width: 448px;
       height: 280px;
+
       // background-color: red;
       .el-form-item {
         position: relative;
         border: 1px solid #999;
         border-radius: 5px;
+
         .svg-container {
           padding: 6px 5px 6px 15px;
           color: $dark_gray;
@@ -175,9 +164,11 @@ $cursor: #fff;
           font-size: 20px;
           display: inline-block;
         }
+
         .les {
           padding: 6px 5px 6px 12px;
         }
+
         .img {
           position: absolute;
           width: 132px;
@@ -187,10 +178,12 @@ $cursor: #fff;
           z-index: 0;
           border: 1px solid green;
         }
+
         .el-input {
           display: inline-block;
           height: 52px;
           width: 85%;
+
           input {
             width: 75%;
             background: transparent;
@@ -209,6 +202,7 @@ $cursor: #fff;
           }
         }
       }
+
       .loginBtn {
         background: linear-gradient(262deg, #2e50e1, #6878f0);
         width: 448px;
