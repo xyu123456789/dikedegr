@@ -47,13 +47,34 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
-    }]
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('@/views/dashboard/index'),
+        meta: { title: '帝可得', icon: 'dashboard' }
+      },
+      {
+        path: '/vmIndex',
+        name: 'vmIndex',
+        component: () => import('@/views/vm/index'),
+        meta: { title: '设备管理', icon: 'dashboard' }
+      },
+      {
+        path: '/vmType',
+        name: 'vmType',
+        component: () => import('@/views/vm/type'),
+        meta: { title: '设备状态管理', icon: 'dashboard' }
+      },
+      {
+        path: '/vmStatus',
+        name: 'vmStatus',
+        component: () => import('@/views/vm/status'),
+        meta: { title: '设备状态', icon: 'dashboard' }
+      }
+    ]
   },
+
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
